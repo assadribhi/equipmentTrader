@@ -1,20 +1,20 @@
 // React
 import React from "react";
+
 // Data
 import items from "../items";
+
 // Styles
-import style from "../styles";
+import { ListWrapper } from "../styles";
+
 // Components
-import PieceOfEquipment from "./PieceOfEquipment";
+import EquipmentItem from "./EquipmentItem";
 
 const EquipmentList = () => {
-  const itemList = items.map((pieceOfEquipment) => (
-    <PieceOfEquipment
-      equipmentName={pieceOfEquipment}
-      key={pieceOfEquipment.id}
-    />
+  const itemList = items.map((equipment) => (
+    <EquipmentItem equipment={equipment} key={equipment.id} />
   ));
-  return <div style={style.list}>{itemList}</div>;
+  return <ListWrapper>{itemList}</ListWrapper>;
 };
 
 export default EquipmentList;
