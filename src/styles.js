@@ -2,7 +2,7 @@ import styled, { createGlobalStyle } from "styled-components";
 
 const Title = styled.h1`
   text-align: center;
-  color: black;
+  color: ${(props) => props.theme.fontColor};
 `;
 
 const ThemeSwitcher = styled.button`
@@ -15,6 +15,7 @@ const ThemeSwitcher = styled.button`
 
 const DeleteButtonStyled = styled.p`
   color: ${(props) => props.theme.deleteButtonColor};
+  font-weight: bold;
 `;
 
 const Descreption = styled.h4`
