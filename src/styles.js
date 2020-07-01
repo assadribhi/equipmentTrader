@@ -5,6 +5,14 @@ const Title = styled.h1`
   color: black;
 `;
 
+const ThemeSwitcher = styled.button`
+  margin: 20px;
+  padding: 5px;
+  font-weight: bold;
+  color: ${(props) => props.theme.fontColor};
+  background-color: ${(props) => props.theme.backgroundColor};
+`;
+
 const Descreption = styled.h4`
   text-align: center;
 `;
@@ -39,16 +47,18 @@ const EquipmentWrapper = styled.div`
 
   p {
     &.equipmentName {
-      color: blue;
+      color: ${(props) => props.theme.fontColor};
     }
     &.equipmentPrice {
-      color: blue;
+      color: ${(props) => props.theme.priceFontColor};
+      font-weight: bold;
     }
   }
 `;
 
 export {
   Title,
+  ThemeSwitcher,
   GlobalStyle,
   Descreption,
   YardImage,

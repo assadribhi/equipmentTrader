@@ -1,8 +1,14 @@
 // React
-import React from "react";
+import React, { useState } from "react";
 
 // Styles
-import { Descreption, Title, GlobalStyle, YardImage } from "./styles";
+import {
+  Descreption,
+  Title,
+  ThemeSwitcher,
+  GlobalStyle,
+  YardImage,
+} from "./styles";
 
 // Theme
 import { ThemeProvider } from "styled-components";
@@ -11,14 +17,27 @@ import { ThemeProvider } from "styled-components";
 import EquipmentList from "./components/EquipmentList";
 
 const theme = {
-  mainColor: "#ffffff",
-  backgroundColor: "#c0c0c0",
-  fontColor: "#000000",
+  lightTheme: {
+    backgroundColor: "#c0c0c0",
+    fontColor: "#000000",
+    priceFontColor: "#FFD300",
+  },
+  darkTheme: {
+    backgroundColor: "#000000",
+    fontColor: "#c0c0c0",
+    priceFontColor: "#FFD300",
+  },
 };
 
 function App() {
+  const [currentTheme, setCurrentTheme] = useState("lightTheme");
+  const toggleTheme = () => {
+    setCurrentTheme(currentTheme === "lightTheme" ? "darkTheme" : "lightTheme");
+    console.log(currentTheme);
+  };
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme[currentTheme]}>
+      <ThemeSwitcher onClick={toggleTheme}>Dark Theme</ThemeSwitcher>
       <GlobalStyle />
       <div>
         <Title>Heavy Equipment Trader</Title>
