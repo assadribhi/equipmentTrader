@@ -21,11 +21,13 @@ const theme = {
     backgroundColor: "#c0c0c0",
     fontColor: "#000000",
     priceFontColor: "#FFD300",
+    deleteButtonColor: "#8B0000",
   },
   darkTheme: {
     backgroundColor: "#000000",
     fontColor: "#c0c0c0",
     priceFontColor: "#FFD300",
+    deleteButtonColor: "#8B0000",
   },
 };
 
@@ -37,7 +39,9 @@ function App() {
   };
   return (
     <ThemeProvider theme={theme[currentTheme]}>
-      <ThemeSwitcher onClick={toggleTheme}>Dark Theme</ThemeSwitcher>
+      <ThemeSwitcher onClick={toggleTheme}>
+        {currentTheme === "lightTheme" ? "Dark" : "Light"} Mode
+      </ThemeSwitcher>
       <GlobalStyle />
       <div>
         <Title>Heavy Equipment Trader</Title>

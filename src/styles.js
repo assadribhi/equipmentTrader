@@ -13,6 +13,10 @@ const ThemeSwitcher = styled.button`
   background-color: ${(props) => props.theme.backgroundColor};
 `;
 
+const DeleteButtonStyled = styled.p`
+  color: ${(props) => props.theme.deleteButtonColor};
+`;
+
 const Descreption = styled.h4`
   text-align: center;
 `;
@@ -45,6 +49,8 @@ const EquipmentWrapper = styled.div`
     width: 300px;
   }
 
+  text-align: center;
+
   p {
     &.equipmentName {
       color: ${(props) => props.theme.fontColor};
@@ -60,6 +66,7 @@ export {
   Title,
   ThemeSwitcher,
   GlobalStyle,
+  DeleteButtonStyled,
   Descreption,
   YardImage,
   ListWrapper,

@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useState } from "react";
 
 // Data
 import items from "../items";
@@ -11,8 +11,19 @@ import { ListWrapper } from "../styles";
 import EquipmentItem from "./EquipmentItem";
 
 const EquipmentList = () => {
-  const itemList = items.map((equipment) => (
-    <EquipmentItem equipment={equipment} key={equipment.id} />
+  const [_items, setItems] = useState(items);
+  const deleteItem = (itemId) => {
+    const updatedEquipmentList = _items.filter(
+      (equipment) => equipment.id !== +itemId
+    );
+    setItems(updatedEquipmentList);
+  };
+  const itemList = _items.map((equipment) => (
+    <EquipmentItem
+      equipment={equipment}
+      key={equipment.id}
+      deleteItem={deleteItem}
+    />
   ));
   return <ListWrapper>{itemList}</ListWrapper>;
 };
