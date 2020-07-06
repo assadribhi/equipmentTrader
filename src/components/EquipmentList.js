@@ -1,8 +1,5 @@
 // React
-import React, { useState } from "react";
-
-// Data
-import items from "../items";
+import React from "react";
 
 // Styles
 import { ListWrapper } from "../styles";
@@ -10,19 +7,13 @@ import { ListWrapper } from "../styles";
 // Components
 import EquipmentItem from "./EquipmentItem";
 
-const EquipmentList = () => {
-  const [_items, setItems] = useState(items);
-  const deleteItem = (itemId) => {
-    const updatedEquipmentList = _items.filter(
-      (equipment) => equipment.id !== +itemId
-    );
-    setItems(updatedEquipmentList);
-  };
-  const itemList = _items.map((equipment) => (
+const EquipmentList = (props) => {
+  const itemList = props.items.map((equipment) => (
     <EquipmentItem
       equipment={equipment}
       key={equipment.id}
-      deleteItem={deleteItem}
+      deleteItem={props.deleteItem}
+      selectEquipment={props.selectEquipment}
     />
   ));
   return <ListWrapper>{itemList}</ListWrapper>;

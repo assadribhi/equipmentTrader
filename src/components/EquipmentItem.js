@@ -12,7 +12,11 @@ const EquipmentItem = (props) => {
   };
   return (
     <EquipmentWrapper key={equipment.id}>
-      <img src={equipment.image} alt={equipment.name} />
+      <img
+        src={equipment.image}
+        alt={equipment.name}
+        onClick={() => props.selectEquipment(equipment.id)}
+      />
       <p className="equipmentName">{equipment.name} Rental</p>
       <p className="equipmentPrice">{equipment.price} KD / Day</p>
       <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>
