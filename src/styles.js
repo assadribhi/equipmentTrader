@@ -1,18 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-export const Title = styled.h1`
-  text-align: center;
-  color: ${(props) => props.theme.fontColor};
-`;
-
-export const ThemeSwitcher = styled.button`
-  margin: 20px;
-  padding: 5px;
-  font-weight: bold;
-  color: ${(props) => props.theme.fontColor};
-  background-color: ${(props) => props.theme.backgroundColor};
-`;
-
 export const DeleteButtonStyled = styled.button`
   color: ${(props) => props.theme.deleteButtonColor};
   font-weight: bold;
@@ -49,34 +36,6 @@ export const DetailWrapper = styled.div`
   }
 `;
 
-export const GlobalStyle = createGlobalStyle`
-body {
-  color:${(props) => props.theme.fontColor};
-  background-color:${(props) => props.theme.backgroundColor};
-
-}
-`;
-
-export const ReturnButtonStyled = styled.button`
-  color: ${(props) => props.theme.returnButtonColor};
-  font-weight: bold;
-  background-color: ${(props) => props.theme.backgroundColor};
-  border: 0px;
-`;
-
-export const YardImage = styled.img`
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 20%;
-`;
-
-export const ListWrapper = styled.div`
-  align-items: center;
-  justify-content: center;
-  display: flex;
-`;
-
 export const EquipmentWrapper = styled.div`
   margin: 20px;
 
@@ -96,6 +55,54 @@ export const EquipmentWrapper = styled.div`
       font-weight: bold;
     }
   }
+`;
+
+export const GlobalStyle = createGlobalStyle`
+body {
+  color:${(props) => props.theme.fontColor};
+  background-color:${(props) => props.theme.backgroundColor};
+
+}
+`;
+
+export const ListWrapper = styled.div`
+  align-items: center;
+  justify-content: center;
+  display: flex;
+`;
+
+export const ReturnButtonStyled = styled.button`
+  color: ${(props) => props.theme.returnButtonColor};
+  font-weight: bold;
+  background-color: ${(props) => props.theme.backgroundColor};
+  border: 0px;
+`;
+
+export const SearchBarStyle = styled.input`
+  padding: 0.5rem;
+  margin: 1rem auto;
+  display: block;
+  width: 40%;
+`;
+
+export const ThemeSwitcher = styled.button`
+  margin: 20px;
+  padding: 5px;
+  font-weight: bold;
+  color: ${(props) => props.theme.fontColor};
+  background-color: ${(props) => props.theme.backgroundColor};
+`;
+
+export const Title = styled.h1`
+  text-align: center;
+  color: ${(props) => props.theme.fontColor};
+`;
+
+export const YardImage = styled.img`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
 `;
 
 // const style = {

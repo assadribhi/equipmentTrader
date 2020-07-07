@@ -1,14 +1,22 @@
 // React
-import React from "react";
+import React, { useState } from "react";
 
 // Styles
 import { ListWrapper } from "../styles";
 
 // Components
 import EquipmentItem from "./EquipmentItem";
+import SearchBar from "./SearchBar";
 
 const EquipmentList = (props) => {
-  const itemList = props.items.map((equipment) => (
+  const [query, setQuery] = useState("");
+
+  const filteredEquipment = props.items.filter((equipment) =>
+    equipment.name.includes(query)
+  );
+  console.log("filtered Equipment", filteredEquipment);
+
+  const itemList = filteredEquipment.map((equipment) => (
     <EquipmentItem
       equipment={equipment}
       key={equipment.id}
@@ -16,7 +24,11 @@ const EquipmentList = (props) => {
       selectEquipment={props.selectEquipment}
     />
   ));
-  return <ListWrapper>{itemList}</ListWrapper>;
+  return (
+    <>
+      <SearchBar setQuery={setQuery} />
+      <ListWrapper>{itemList}</ListWrapper>
+    </>
+  );
 };
-
 export default EquipmentList;

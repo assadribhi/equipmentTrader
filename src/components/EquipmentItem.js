@@ -1,15 +1,16 @@
 // React
 import React from "react";
 
+// Components
+import DeleteButton from "./buttons/DeleteButton";
+
 // Styles
 
-import { EquipmentWrapper, DeleteButtonStyled } from "../styles";
+import { EquipmentWrapper } from "../styles";
 
 const EquipmentItem = (props) => {
   const equipment = props.equipment;
-  const handleDelete = () => {
-    props.deleteItem(equipment.id);
-  };
+
   return (
     <EquipmentWrapper key={equipment.id}>
       <img
@@ -19,7 +20,7 @@ const EquipmentItem = (props) => {
       />
       <p className="equipmentName">{equipment.name} Rental</p>
       <p className="equipmentPrice">{equipment.price} KD / Day</p>
-      <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>
+      <DeleteButton equipmentId={equipment.id} deleteItem={props.deleteItem} />
     </EquipmentWrapper>
   );
 };

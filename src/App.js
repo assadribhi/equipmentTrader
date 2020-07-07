@@ -41,6 +41,14 @@ function App() {
   const [_items, setItems] = useState(items);
   const [currentTheme, setCurrentTheme] = useState("lightTheme");
 
+  const deleteItem = (itemId) => {
+    const updatedEquipmentList = _items.filter(
+      (equipment) => equipment.id !== +itemId
+    );
+    setItems(updatedEquipmentList);
+    setEquipment(null);
+  };
+
   const toggleTheme = () => {
     setCurrentTheme(currentTheme === "lightTheme" ? "darkTheme" : "lightTheme");
     console.log(currentTheme);
@@ -51,14 +59,6 @@ function App() {
       (equipment) => equipmentId === equipment.id
     );
     setEquipment(selectedEquipment);
-  };
-
-  const deleteItem = (itemId) => {
-    const updatedEquipmentList = _items.filter(
-      (equipment) => equipment.id !== +itemId
-    );
-    setItems(updatedEquipmentList);
-    setEquipment(null);
   };
 
   const setView = () => {
