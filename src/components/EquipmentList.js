@@ -12,7 +12,7 @@ const EquipmentList = (props) => {
   const [query, setQuery] = useState("");
 
   const filteredEquipment = props.items.filter((equipment) =>
-    equipment.name.includes(query)
+    equipment.name.toLowerCase().includes(query.toLowerCase())
   );
   console.log("filtered Equipment", filteredEquipment);
 

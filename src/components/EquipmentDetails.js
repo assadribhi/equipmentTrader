@@ -1,18 +1,19 @@
 // Components
 import DeleteButton from "./buttons/DeleteButton";
+import { useParams } from "react-router-dom";
 
 // React
 import React from "react";
 
 // Styles
-import { DetailWrapper, ReturnButtonStyled } from "../styles";
+import { DetailWrapper } from "../styles";
 
 const EquipmentDetail = (props) => {
-  const equipment = props.equipment;
+  const { equipmentId } = useParams();
 
-  const returnToList = () => {
-    props.setEquipment(null);
-  };
+  const equipment = props.items.find(
+    (equipment) => equipment.id === +equipmentId
+  );
   return (
     <DetailWrapper>
       <img src={equipment.image} alt={equipment.name} />
@@ -20,9 +21,6 @@ const EquipmentDetail = (props) => {
       <p className="equipmentPrice">{equipment.price} KD / Day</p>
       <p className="equipmentDescription">{equipment.description} Rental</p>
       <DeleteButton equipmentId={equipment.id} deleteItem={props.deleteItem} />
-      <ReturnButtonStyled onClick={returnToList}>
-        Back To List View
-      </ReturnButtonStyled>
     </DetailWrapper>
   );
 };

@@ -71,13 +71,6 @@ export const ListWrapper = styled.div`
   display: flex;
 `;
 
-export const ReturnButtonStyled = styled.button`
-  color: ${(props) => props.theme.returnButtonColor};
-  font-weight: bold;
-  background-color: ${(props) => props.theme.backgroundColor};
-  border: 0px;
-`;
-
 export const SearchBarStyle = styled.input`
   padding: 0.5rem;
   margin: 1rem auto;
@@ -102,13 +95,5 @@ export const YardImage = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 20%;
+  width: 40%;
 `;
-
-// const style = {
-//   equipmentImage: { width: "300px" },
-
-//   equipment: { margin: "20px" },
-// };
-
-// export default style;

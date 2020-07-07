@@ -1,16 +1,13 @@
 // Data
 import items from "./items";
+
 // React
 import React, { useState } from "react";
+import { Route, Switch } from "react-router";
+import { Link } from "react-router-dom";
 
 // Styles
-import {
-  Descreption,
-  Title,
-  ThemeSwitcher,
-  GlobalStyle,
-  YardImage,
-} from "./styles";
+import { ThemeSwitcher, GlobalStyle } from "./styles";
 
 // Theme
 import { ThemeProvider } from "styled-components";
@@ -18,6 +15,7 @@ import { ThemeProvider } from "styled-components";
 // Components
 import EquipmentList from "./components/EquipmentList";
 import EquipmentDetails from "./components/EquipmentDetails";
+import Home from "./components/Home";
 
 const theme = {
   lightTheme: {
@@ -37,7 +35,7 @@ const theme = {
 };
 
 function App() {
-  const [equipment, setEquipment] = useState(null);
+  const [equipment, setEquipment] = useState(1);
   const [_items, setItems] = useState(items);
   const [currentTheme, setCurrentTheme] = useState("lightTheme");
 
@@ -48,55 +46,36 @@ function App() {
     setItems(updatedEquipmentList);
     setEquipment(null);
   };
-
+  console.log(equipment);
   const toggleTheme = () => {
     setCurrentTheme(currentTheme === "lightTheme" ? "darkTheme" : "lightTheme");
     console.log(currentTheme);
   };
 
-  const selectEquipment = (equipmentId) => {
-    const selectedEquipment = items.find(
-      (equipment) => equipmentId === equipment.id
-    );
-    setEquipment(selectedEquipment);
-  };
-
-  const setView = () => {
-    if (equipment)
-      return (
-        <EquipmentDetails
-          equipment={equipment}
-          deleteItem={deleteItem}
-          setEquipment={setEquipment}
-        />
-      );
-    return (
-      <EquipmentList
-        items={_items}
-        selectEquipment={selectEquipment}
-        deleteItem={deleteItem}
-      />
-    );
-  };
-
   return (
     <ThemeProvider theme={theme[currentTheme]}>
+      <GlobalStyle />
+      <Link to="/" style={{ margin: 10, float: "right" }}>
+        Home
+      </Link>
+      <Link to="/equipment" style={{ margin: 10, float: "right" }}>
+        Equipment
+      </Link>
       <ThemeSwitcher onClick={toggleTheme}>
         {currentTheme === "lightTheme" ? "Dark" : "Light"} Mode
       </ThemeSwitcher>
-      <GlobalStyle />
-      <div>
-        <Title>Heavy Equipment Trader</Title>
-        <YardImage
-          src="https://previews.123rf.com/images/kovacevic/kovacevic1302/kovacevic130200009/17794615-under-construction-sign-with-helmet-and-heavy-machine.jpg"
-          alt="Shop Logo"
-        />
-        <Descreption>
-          Your Destination for all your Heavy Equipment needs.
-        </Descreption>
-      </div>
 
-      {setView()}
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/equipment/:equipmentId">
+          <EquipmentDetails deleteItem={deleteItem} items={_items} />
+        </Route>
+        <Route path="/equipment">
+          <EquipmentList items={_items} deleteItem={deleteItem} />
+        </Route>
+      </Switch>
     </ThemeProvider>
   );
 }
