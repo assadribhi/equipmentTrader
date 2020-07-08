@@ -1,6 +1,6 @@
 // Components
 import DeleteButton from "./buttons/DeleteButton";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 
 // React
 import React from "react";
@@ -9,11 +9,12 @@ import React from "react";
 import { DetailWrapper } from "../styles";
 
 const EquipmentDetail = (props) => {
-  const { equipmentName } = useParams();
+  const { equipmentSlug } = useParams();
 
   const equipment = props.items.find(
-    (equipment) => equipment.name.replace(" ", "-") === equipmentName
+    (equipment) => equipment.slug === equipmentSlug
   );
+  if (!equipment) return <Redirect to="/equipment" />;
   return (
     <DetailWrapper>
       <img src={equipment.image} alt={equipment.name} />

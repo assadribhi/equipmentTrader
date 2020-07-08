@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { Link, NavLink } from "react-router-dom";
 
 export const DeleteButtonStyled = styled.button`
   color: ${(props) => props.theme.deleteButtonColor};
@@ -38,6 +39,7 @@ export const DetailWrapper = styled.div`
 
 export const EquipmentWrapper = styled.div`
   margin: 20px;
+  padding: 10px;
 
   img {
     margin: 10px;
@@ -71,6 +73,27 @@ export const ListWrapper = styled.div`
   display: flex;
 `;
 
+export const Logo = styled(Link)`
+  padding: 0.75em;
+  img {
+    width: 8em;
+  }
+`;
+
+export const NavStyled = styled.nav`
+  background-color: ${(props) => props.theme.navBarColor};
+`;
+
+export const NavLinkStyled = styled(NavLink)`
+  color: ${(props) => props.theme.inActiveFontColor};
+
+  &.active {
+    padding: 0.25em 1em;
+
+    color: ${(props) => props.theme.activeFontColor};
+  }
+`;
+
 export const SearchBarStyle = styled.input`
   padding: 0.5rem;
   margin: 1rem auto;
@@ -79,7 +102,6 @@ export const SearchBarStyle = styled.input`
 `;
 
 export const ThemeSwitcher = styled.button`
-  margin: 20px;
   padding: 5px;
   font-weight: bold;
   color: ${(props) => props.theme.fontColor};

@@ -2,6 +2,8 @@ const items = [
   {
     id: 1,
     name: "Wheel loader",
+    slug: "Wheel-loader",
+    catagory: "Heavy Equipment",
     price: 70,
     image:
       "https://www.constructionequipment.com/sites/ce/files/styles/large/public/Volvo-L180H-Bucketful.gif?itok=Rcxl2_Zp",
@@ -10,6 +12,8 @@ const items = [
   {
     id: 2,
     name: "Grader",
+    slug: "Grader",
+    catagory: "Heavy Equipment",
     price: 100,
     image:
       "https://www.constructionequipment.com/sites/ce/files/Caterpillar-140-motor-grader.png",
@@ -18,6 +22,8 @@ const items = [
   {
     id: 3,
     name: "Skid Steer",
+    slug: "Skid-Steer",
+    catagory: "Heavy Equipment",
     price: 40,
     image: "https://media.stokker.com/prod/l/982/144736982",
     description: "Bobcat S220 Skid Steer",
@@ -25,6 +31,8 @@ const items = [
   {
     id: 4,
     name: "Steel Roller",
+    slug: "Steel-Roller",
+    catagory: "Heavy Equipment",
     price: 55,
     image:
       "https://s7d2.scene7.com/is/image/Caterpillar/CM20161129-29572-37224?$cc-g$&fmt=pjpeg",

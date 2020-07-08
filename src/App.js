@@ -16,18 +16,25 @@ import { ThemeProvider } from "styled-components";
 import EquipmentList from "./components/EquipmentList";
 import EquipmentDetails from "./components/EquipmentDetails";
 import Home from "./components/Home";
+import NavBar from "./components/NavBar";
 
 const theme = {
   lightTheme: {
     backgroundColor: "#c0c0c0",
+    navBarColor: "#000000",
     fontColor: "#000000",
+    inActiveFontColor: "#c0c0c0",
+    activeFontColor: "#FFD300",
     priceFontColor: "#FFD300",
     deleteButtonColor: "#ff0000",
     returnButtonColor: "#008000",
   },
   darkTheme: {
     backgroundColor: "#000000",
+    navBarColor: "#c0c0c0",
     fontColor: "#c0c0c0",
+    inActiveFontColor: "#000000",
+    activeFontColor: "#FFD300",
     priceFontColor: "#FFD300",
     deleteButtonColor: "#ff0000",
     returnButtonColor: "#008000",
@@ -55,21 +62,14 @@ function App() {
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
-      <Link to="/" style={{ margin: 10, float: "right" }}>
-        Home
-      </Link>
-      <Link to="/equipment" style={{ margin: 10, float: "right" }}>
-        Equipment
-      </Link>
-      <ThemeSwitcher onClick={toggleTheme}>
-        {currentTheme === "lightTheme" ? "Dark" : "Light"} Mode
-      </ThemeSwitcher>
+
+      <NavBar toggleTheme={toggleTheme} currentTheme={currentTheme} />
 
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/equipment/:equipmentName">
+        <Route path="/equipment/:equipmentSlug">
           <EquipmentDetails deleteItem={deleteItem} items={_items} />
         </Route>
         <Route path="/equipment">

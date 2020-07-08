@@ -8,10 +8,10 @@ import { ListWrapper } from "../styles";
 import EquipmentItem from "./EquipmentItem";
 import SearchBar from "./SearchBar";
 
-const EquipmentList = (props) => {
+const EquipmentList = ({ items, deleteItem, selectEquipment }) => {
   const [query, setQuery] = useState("");
 
-  const filteredEquipment = props.items.filter((equipment) =>
+  const filteredEquipment = items.filter((equipment) =>
     equipment.name.toLowerCase().includes(query.toLowerCase())
   );
   console.log("filtered Equipment", filteredEquipment);
@@ -20,15 +20,15 @@ const EquipmentList = (props) => {
     <EquipmentItem
       equipment={equipment}
       key={equipment.id}
-      deleteItem={props.deleteItem}
-      selectEquipment={props.selectEquipment}
+      deleteItem={deleteItem}
+      selectEquipment={selectEquipment}
     />
   ));
   return (
-    <>
+    <div className="container">
       <SearchBar setQuery={setQuery} />
-      <ListWrapper>{itemList}</ListWrapper>
-    </>
+      <ListWrapper className="raw">{itemList}</ListWrapper>
+    </div>
   );
 };
 export default EquipmentList;
