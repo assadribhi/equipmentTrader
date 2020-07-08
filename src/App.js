@@ -69,7 +69,7 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/equipment/:equipmentId">
+        <Route path="/equipment/:equipmentName">
           <EquipmentDetails deleteItem={deleteItem} items={_items} />
         </Route>
         <Route path="/equipment">

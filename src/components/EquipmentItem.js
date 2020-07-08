@@ -14,7 +14,7 @@ const EquipmentItem = (props) => {
 
   return (
     <EquipmentWrapper key={equipment.id}>
-      <Link to={`/equipment/${equipment.id}`}>
+      <Link to={`/equipment/${equipment.name.replace(" ", "-")}`}>
         <img src={equipment.image} alt={equipment.name} />
       </Link>
       <p className="equipmentName">{equipment.name} Rental</p>

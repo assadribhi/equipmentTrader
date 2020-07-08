@@ -9,10 +9,10 @@ import React from "react";
 import { DetailWrapper } from "../styles";
 
 const EquipmentDetail = (props) => {
-  const { equipmentId } = useParams();
+  const { equipmentName } = useParams();
 
   const equipment = props.items.find(
-    (equipment) => equipment.id === +equipmentId
+    (equipment) => equipment.name.replace(" ", "-") === equipmentName
   );
   return (
     <DetailWrapper>
