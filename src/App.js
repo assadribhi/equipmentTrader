@@ -4,10 +4,9 @@ import items from "./items";
 // React
 import React, { useState } from "react";
 import { Route, Switch } from "react-router";
-import { Link } from "react-router-dom";
 
 // Styles
-import { ThemeSwitcher, GlobalStyle } from "./styles";
+import { GlobalStyle } from "./styles";
 
 // Theme
 import { ThemeProvider } from "styled-components";
@@ -42,18 +41,22 @@ const theme = {
 };
 
 function App() {
-  const [equipment, setEquipment] = useState(1);
   const [_items, setItems] = useState(items);
   const [currentTheme, setCurrentTheme] = useState("lightTheme");
+
+  const createEquipment = (newEquipment) => {
+    const updatedEquipment = _items;
+    updatedEquipment.push(newEquipment);
+    setItems(updatedEquipment);
+  };
 
   const deleteItem = (itemId) => {
     const updatedEquipmentList = _items.filter(
       (equipment) => equipment.id !== +itemId
     );
     setItems(updatedEquipmentList);
-    setEquipment(null);
   };
-  console.log(equipment);
+
   const toggleTheme = () => {
     setCurrentTheme(currentTheme === "lightTheme" ? "darkTheme" : "lightTheme");
     console.log(currentTheme);
@@ -73,7 +76,11 @@ function App() {
           <EquipmentDetails deleteItem={deleteItem} items={_items} />
         </Route>
         <Route path="/equipment">
-          <EquipmentList items={_items} deleteItem={deleteItem} />
+          <EquipmentList
+            items={_items}
+            createEquipment={createEquipment}
+            deleteItem={deleteItem}
+          />
         </Route>
       </Switch>
     </ThemeProvider>

@@ -7,8 +7,14 @@ import { ListWrapper } from "../styles";
 // Components
 import EquipmentItem from "./EquipmentItem";
 import SearchBar from "./SearchBar";
+import AddButton from "./buttons/AddButton";
 
-const EquipmentList = ({ items, deleteItem, selectEquipment }) => {
+const EquipmentList = ({
+  items,
+  deleteItem,
+  selectEquipment,
+  createEquipment,
+}) => {
   const [query, setQuery] = useState("");
 
   const filteredEquipment = items.filter((equipment) =>
@@ -24,10 +30,12 @@ const EquipmentList = ({ items, deleteItem, selectEquipment }) => {
       selectEquipment={selectEquipment}
     />
   ));
+
   return (
     <div className="container">
       <SearchBar setQuery={setQuery} />
       <ListWrapper className="raw">{itemList}</ListWrapper>
+      <AddButton createEquipment={createEquipment} />
     </div>
   );
 };
