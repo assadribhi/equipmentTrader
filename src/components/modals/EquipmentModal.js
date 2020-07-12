@@ -6,7 +6,9 @@ import { customStyles, CreateButtonStyled } from "../../styles";
 
 const EquipmentModal = ({ isOpen, closeModal, createEquipment }) => {
   const [equipment, setEquipment] = useState({
+    id: 0,
     name: "",
+    slug: "",
     price: 0,
     description: "",
     image: "",
@@ -15,11 +17,18 @@ const EquipmentModal = ({ isOpen, closeModal, createEquipment }) => {
   const handleChange = (event) => {
     setEquipment({ ...equipment, [event.target.name]: event.target.value });
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     createEquipment(equipment);
     closeModal(true);
   };
+
+  const idMaker = (event) => {
+    setEquipment({ ...equipment, id: equipment.id + 100 });
+    setEquipment({ ...equipment, slug: equipment.name.replace(" ", "-") });
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -72,7 +81,9 @@ const EquipmentModal = ({ isOpen, closeModal, createEquipment }) => {
             onChange={handleChange}
           />
         </div>
-        <CreateButtonStyled className="btn float-right">Add</CreateButtonStyled>
+        <CreateButtonStyled className="btn float-right" onClick={idMaker}>
+          Add
+        </CreateButtonStyled>
       </form>
     </Modal>
   );
