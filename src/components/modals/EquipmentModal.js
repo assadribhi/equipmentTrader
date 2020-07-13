@@ -7,15 +7,17 @@ import equipmentStore from "../../stores/equipmentStore";
 // Style
 import { customStyles, CreateButtonStyled } from "../../styles";
 
-const EquipmentModal = ({ isOpen, closeModal }) => {
-  const [equipment, setEquipment] = useState({
-    id: 0,
-    name: "",
-    slug: "",
-    price: 0,
-    description: "",
-    image: "",
-  });
+const EquipmentModal = ({ isOpen, closeModal, oldEquipment }) => {
+  const [equipment, setEquipment] = useState(
+    oldEquipment ?? {
+      id: 0,
+      name: "",
+      slug: "",
+      price: 0,
+      description: "",
+      image: "",
+    }
+  );
 
   const handleChange = (event) => {
     setEquipment({ ...equipment, [event.target.name]: event.target.value });
@@ -23,7 +25,9 @@ const EquipmentModal = ({ isOpen, closeModal }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    equipmentStore.createEquipment(equipment);
+    equipmentStore[oldEquipment ? "updateEquipment" : "createEquipment"](
+      equipment
+    );
     closeModal(true);
   };
 
@@ -39,7 +43,7 @@ const EquipmentModal = ({ isOpen, closeModal }) => {
       style={customStyles}
       contentLabel="Example Modal"
     >
-      <h3>New Equipment</h3>
+      <h3>{oldEquipment ? "Edit Equipment" : "New Equipment"}</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group row">
           <div className="col-6">
@@ -50,6 +54,7 @@ const EquipmentModal = ({ isOpen, closeModal }) => {
               required="required"
               name="name"
               onChange={handleChange}
+              value={equipment.name}
             />
           </div>
           <div className="col-6">
@@ -61,6 +66,7 @@ const EquipmentModal = ({ isOpen, closeModal }) => {
               required="required"
               name="price"
               onChange={handleChange}
+              value={equipment.price}
             />
           </div>
         </div>
@@ -72,6 +78,7 @@ const EquipmentModal = ({ isOpen, closeModal }) => {
             required="required"
             name="description"
             onChange={handleChange}
+            value={equipment.description}
           />
         </div>
         <div className="form-group">
@@ -82,10 +89,11 @@ const EquipmentModal = ({ isOpen, closeModal }) => {
             required="required"
             name="image"
             onChange={handleChange}
+            value={equipment.image}
           />
         </div>
         <CreateButtonStyled className="btn float-right" onClick={idMaker}>
-          Add
+          {oldEquipment ? "Update" : "Add"}
         </CreateButtonStyled>
       </form>
     </Modal>

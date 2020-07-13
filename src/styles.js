@@ -134,6 +134,13 @@ export const Title = styled.h1`
   color: ${(props) => props.theme.fontColor};
 `;
 
+export const UpdateButtonStyled = styled.button`
+  color: ${(props) => props.theme.updateButtonColor};
+  font-weight: bold;
+  background-color: ${(props) => props.theme.backgroundColor};
+  border: 0px;
+`;
+
 export const YardImage = styled.img`
   display: block;
   margin-left: auto;

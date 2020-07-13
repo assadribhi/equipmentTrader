@@ -13,6 +13,7 @@ import equipmentStore from "../stores/equipmentStore";
 
 // Styles
 import { DetailWrapper } from "../styles";
+import UpdateButton from "./buttons/UpdateButton";
 
 const EquipmentDetail = (props) => {
   const { equipmentSlug } = useParams();
@@ -27,7 +28,8 @@ const EquipmentDetail = (props) => {
       <h1 className="equipmentName">{equipment.name} </h1>
       <p className="equipmentPrice">{equipment.price} KD / Day</p>
       <p className="equipmentDescription">{equipment.description} Rental</p>
-      <DeleteButton equipmentId={equipment.id} deleteItem={props.deleteItem} />
+      <UpdateButton equipment={equipment} />
+      <DeleteButton equipmentId={equipment.id} />
     </DetailWrapper>
   );
 };

@@ -16,6 +16,16 @@ class EquipmentStore {
       (equipment) => equipment.id !== +equipmentId
     );
   };
+
+  updateEquipment = (updatedEquipment) => {
+    const equipment = this.equipment.find(
+      (equipment) => equipment.id === updatedEquipment.id
+    );
+    equipment.name = updatedEquipment.name;
+    equipment.price = updatedEquipment.price;
+    equipment.description = updatedEquipment.description;
+    equipment.image = updatedEquipment.image;
+  };
 }
 
 decorate(EquipmentStore, {

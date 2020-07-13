@@ -24,6 +24,7 @@ const theme = {
     priceFontColor: "#FFD300",
     deleteButtonColor: "#ff0000",
     returnButtonColor: "#008000",
+    updateButtonColor: "#10a5f5",
   },
   darkTheme: {
     backgroundColor: "#000000",
@@ -34,6 +35,7 @@ const theme = {
     priceFontColor: "#FFD300",
     deleteButtonColor: "#ff0000",
     returnButtonColor: "#008000",
+    updateButtonColor: "#10a5f5",
   },
 };
 
