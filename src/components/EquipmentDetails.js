@@ -2,8 +2,14 @@
 import DeleteButton from "./buttons/DeleteButton";
 import { Redirect, useParams } from "react-router-dom";
 
+// Mobx
+import { observer } from "mobx-react";
+
 // React
 import React from "react";
+
+// Stores
+import equipmentStore from "../stores/equipmentStore";
 
 // Styles
 import { DetailWrapper } from "../styles";
@@ -11,7 +17,7 @@ import { DetailWrapper } from "../styles";
 const EquipmentDetail = (props) => {
   const { equipmentSlug } = useParams();
 
-  const equipment = props.items.find(
+  const equipment = equipmentStore.equipment.find(
     (equipment) => equipment.slug === equipmentSlug
   );
   if (!equipment) return <Redirect to="/equipment" />;
@@ -25,4 +31,4 @@ const EquipmentDetail = (props) => {
     </DetailWrapper>
   );
 };
-export default EquipmentDetail;
+export default observer(EquipmentDetail);

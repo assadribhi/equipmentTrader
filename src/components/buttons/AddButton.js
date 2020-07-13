@@ -4,7 +4,7 @@ import { MdAddCircleOutline } from "react-icons/md";
 
 import EquipmentModal from "../modals/EquipmentModal";
 
-const AddButton = ({ createEquipment }) => {
+const AddButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
@@ -18,11 +18,7 @@ const AddButton = ({ createEquipment }) => {
         size="2em"
         onClick={openModal}
       />
-      <EquipmentModal
-        isOpen={isOpen}
-        closeModal={closeModal}
-        createEquipment={createEquipment}
-      />
+      <EquipmentModal isOpen={isOpen} closeModal={closeModal} />
     </>
   );
 };

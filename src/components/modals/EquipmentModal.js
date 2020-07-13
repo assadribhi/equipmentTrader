@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 
+// Stores
+import equipmentStore from "../../stores/equipmentStore";
+
 // Style
 import { customStyles, CreateButtonStyled } from "../../styles";
 
-const EquipmentModal = ({ isOpen, closeModal, createEquipment }) => {
+const EquipmentModal = ({ isOpen, closeModal }) => {
   const [equipment, setEquipment] = useState({
     id: 0,
     name: "",
@@ -20,7 +23,7 @@ const EquipmentModal = ({ isOpen, closeModal, createEquipment }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createEquipment(equipment);
+    equipmentStore.createEquipment(equipment);
     closeModal(true);
   };
 

@@ -1,5 +1,8 @@
-// Data
-import items from "./items";
+// Components
+import EquipmentList from "./components/EquipmentList";
+import EquipmentDetails from "./components/EquipmentDetails";
+import Home from "./components/Home";
+import NavBar from "./components/NavBar";
 
 // React
 import React, { useState } from "react";
@@ -10,12 +13,6 @@ import { GlobalStyle } from "./styles";
 
 // Theme
 import { ThemeProvider } from "styled-components";
-
-// Components
-import EquipmentList from "./components/EquipmentList";
-import EquipmentDetails from "./components/EquipmentDetails";
-import Home from "./components/Home";
-import NavBar from "./components/NavBar";
 
 const theme = {
   lightTheme: {
@@ -41,21 +38,7 @@ const theme = {
 };
 
 function App() {
-  const [_items, setItems] = useState(items);
   const [currentTheme, setCurrentTheme] = useState("lightTheme");
-
-  const createEquipment = (newEquipment) => {
-    const updatedEquipment = _items;
-    updatedEquipment.push(newEquipment);
-    setItems(updatedEquipment);
-  };
-
-  const deleteItem = (itemId) => {
-    const updatedEquipmentList = _items.filter(
-      (equipment) => equipment.id !== +itemId
-    );
-    setItems(updatedEquipmentList);
-  };
 
   const toggleTheme = () => {
     setCurrentTheme(currentTheme === "lightTheme" ? "darkTheme" : "lightTheme");
@@ -73,14 +56,10 @@ function App() {
           <Home />
         </Route>
         <Route path="/equipment/:equipmentSlug">
-          <EquipmentDetails deleteItem={deleteItem} items={_items} />
+          <EquipmentDetails />
         </Route>
         <Route path="/equipment">
-          <EquipmentList
-            items={_items}
-            createEquipment={createEquipment}
-            deleteItem={deleteItem}
-          />
+          <EquipmentList />
         </Route>
       </Switch>
     </ThemeProvider>

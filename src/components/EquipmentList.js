@@ -1,32 +1,31 @@
-// React
-import React, { useState } from "react";
-
-// Styles
-import { ListWrapper } from "../styles";
+// Mobx
+import { observer } from "mobx-react";
 
 // Components
 import EquipmentItem from "./EquipmentItem";
 import SearchBar from "./SearchBar";
 import AddButton from "./buttons/AddButton";
 
-const EquipmentList = ({
-  items,
-  deleteItem,
-  selectEquipment,
-  createEquipment,
-}) => {
+// React
+import React, { useState } from "react";
+
+// Styles
+import { ListWrapper } from "../styles";
+
+// Stores
+import equipmentStore from "../stores/equipmentStore";
+
+const EquipmentList = ({ selectEquipment }) => {
   const [query, setQuery] = useState("");
 
-  const filteredEquipment = items.filter((equipment) =>
+  const filteredEquipment = equipmentStore.equipment.filter((equipment) =>
     equipment.name.toLowerCase().includes(query.toLowerCase())
   );
-  console.log("filtered Equipment", filteredEquipment);
 
   const itemList = filteredEquipment.map((equipment) => (
     <EquipmentItem
       equipment={equipment}
       key={equipment.id}
-      deleteItem={deleteItem}
       selectEquipment={selectEquipment}
     />
   ));
@@ -35,8 +34,8 @@ const EquipmentList = ({
     <div className="container">
       <SearchBar setQuery={setQuery} />
       <ListWrapper className="raw">{itemList}</ListWrapper>
-      <AddButton createEquipment={createEquipment} />
+      <AddButton />
     </div>
   );
 };
-export default EquipmentList;
+export default observer(EquipmentList);
