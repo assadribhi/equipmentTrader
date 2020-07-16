@@ -29,7 +29,7 @@ export const DeleteButtonStyled = styled.button`
   border: 0px;
 `;
 
-export const Descreption = styled.h4`
+export const Description = styled.h4`
   text-align: center;
 `;
 

@@ -1,3 +1,4 @@
+// React
 import React, { useState } from "react";
 import Modal from "react-modal";
 
@@ -29,11 +30,6 @@ const EquipmentModal = ({ isOpen, closeModal, oldEquipment }) => {
       equipment
     );
     closeModal(true);
-  };
-
-  const idMaker = (event) => {
-    setEquipment({ ...equipment, id: equipment.id + 100 });
-    setEquipment({ ...equipment, slug: equipment.name.replace(" ", "-") });
   };
 
   return (
@@ -92,7 +88,7 @@ const EquipmentModal = ({ isOpen, closeModal, oldEquipment }) => {
             value={equipment.image}
           />
         </div>
-        <CreateButtonStyled className="btn float-right" onClick={idMaker}>
+        <CreateButtonStyled className="btn float-right">
           {oldEquipment ? "Update" : "Add"}
         </CreateButtonStyled>
       </form>

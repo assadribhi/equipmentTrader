@@ -1,18 +1,16 @@
+// Components
+import DeleteButton from "./buttons/DeleteButton";
+import { observer } from "mobx-react";
+
 // React
 import React from "react";
 import { Link } from "react-router-dom";
 
-// Components
-import DeleteButton from "./buttons/DeleteButton";
-
-import { observer } from "mobx-react";
-
 // Styles
-
 import { EquipmentWrapper } from "../styles";
 import UpdateButton from "./buttons/UpdateButton";
 
-const EquipmentItem = ({ equipment, deleteItem }) => {
+const EquipmentItem = ({ equipment }) => {
   return (
     <EquipmentWrapper key={equipment.id} className="col-lg-4 col-md-6 col-sm-6">
       <Link to={`/equipment/${equipment.slug}`}>
@@ -22,7 +20,7 @@ const EquipmentItem = ({ equipment, deleteItem }) => {
       <p className="equipmentPrice">{equipment.price} KD / Day</p>
       <UpdateButton equipment={equipment} />
       <br />
-      <DeleteButton equipmentId={equipment.id} deleteItem={deleteItem} />
+      <DeleteButton equipmentId={equipment.id} />
     </EquipmentWrapper>
   );
 };

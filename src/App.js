@@ -1,12 +1,12 @@
+// React
+import React, { useState } from "react";
+import { Route, Switch } from "react-router";
+
 // Components
 import EquipmentList from "./components/EquipmentList";
 import EquipmentDetails from "./components/EquipmentDetails";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
-
-// React
-import React, { useState } from "react";
-import { Route, Switch } from "react-router";
 
 // Styles
 import { GlobalStyle } from "./styles";
@@ -44,7 +44,6 @@ function App() {
 
   const toggleTheme = () => {
     setCurrentTheme(currentTheme === "lightTheme" ? "darkTheme" : "lightTheme");
-    console.log(currentTheme);
   };
 
   return (

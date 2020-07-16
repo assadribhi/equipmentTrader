@@ -1,4 +1,3 @@
-// React
 import React from "react";
 
 // Stores
@@ -11,7 +10,11 @@ const DeleteButton = (props) => {
   const handleDelete = () => {
     equipmentStore.deleteItem(props.equipmentId);
   };
-  return <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>;
+  return (
+    <div>
+      <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>
+    </div>
+  );
 };
 
 export default DeleteButton;

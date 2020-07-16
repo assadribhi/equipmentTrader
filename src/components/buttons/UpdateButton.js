@@ -1,25 +1,27 @@
+// Modals
+import EquipmentModal from "../modals/EquipmentModal";
+
+// React
 import React, { useState } from "react";
 
+// Styles
 import { UpdateButtonStyled } from "../../styles";
-
-import EquipmentModal from "../modals/EquipmentModal";
 
 const UpdateButton = ({ equipment }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
-
   const openModal = () => setIsOpen(true);
 
   return (
-    <>
-      <UpdateButtonStyled onClick={openModal}>Hi</UpdateButtonStyled>
+    <div>
+      <UpdateButtonStyled onClick={openModal}>Update</UpdateButtonStyled>
       <EquipmentModal
         isOpen={isOpen}
         closeModal={closeModal}
         oldEquipment={equipment}
       />
-    </>
+    </div>
   );
 };
 

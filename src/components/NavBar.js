@@ -12,7 +12,7 @@ const NavBar = (props) => {
         <img src={logo} alt={logo} />
       </Logo>
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <div className="collapse navbar-collapse">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <NavLinkStyled to="/equipment" className="nav-link">
