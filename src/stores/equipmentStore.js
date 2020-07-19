@@ -1,5 +1,4 @@
-// Data
-import items from "../items";
+import axios from "axios";
 
 import slugify from "react-slugify";
 
@@ -7,7 +6,14 @@ import slugify from "react-slugify";
 import { decorate, observable } from "mobx";
 
 class EquipmentStore {
-  equipment = items;
+  equipment = [];
+
+  fetchEquipment = async () => {
+    try {
+      const res = await axios.get("http://localhost:8000/equipment");
+      this.equipment = res.data;
+    } catch (error) {}
+  };
 
   createEquipment = (newEquipment) => {
     newEquipment.slug = slugify(newEquipment.name);
@@ -40,4 +46,6 @@ decorate(EquipmentStore, {
 });
 
 const equipmentStore = new EquipmentStore();
+equipmentStore.fetchEquipment();
+
 export default equipmentStore;
