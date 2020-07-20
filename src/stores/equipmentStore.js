@@ -1,7 +1,5 @@
 import axios from "axios";
 
-import slugify from "react-slugify";
-
 // Mobx
 import { decorate, observable } from "mobx";
 
@@ -15,13 +13,14 @@ class EquipmentStore {
     } catch (error) {}
   };
 
-  createEquipment = (newEquipment) => {
-    newEquipment.slug = slugify(newEquipment.name);
-    newEquipment.id =
-      this.equipment.length !== 0
-        ? this.equipment[this.equipment.length - 1].id + 1
-        : 1;
-    this.equipment.push(newEquipment);
+  createEquipment = async (newEquipment) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/equipment",
+        newEquipment
+      );
+      this.equipment.push(res.data);
+    } catch (error) {}
   };
 
   deleteItem = async (equipmentId) => {
