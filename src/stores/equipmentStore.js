@@ -24,10 +24,13 @@ class EquipmentStore {
     this.equipment.push(newEquipment);
   };
 
-  deleteItem = (equipmentId) => {
-    this.equipment = this.equipment.filter(
-      (equipment) => equipment.id !== +equipmentId
-    );
+  deleteItem = async (equipmentId) => {
+    try {
+      await axios.delete(`http://localhost:8000/equipment/${equipmentId}`);
+      this.equipment = this.equipment.filter(
+        (equipment) => equipment.id !== +equipmentId
+      );
+    } catch (error) {}
   };
 
   updateEquipment = (updatedEquipment) => {
