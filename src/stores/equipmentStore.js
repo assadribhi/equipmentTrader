@@ -32,14 +32,18 @@ class EquipmentStore {
     } catch (error) {}
   };
 
-  updateEquipment = (updatedEquipment) => {
-    const equipment = this.equipment.find(
-      (equipment) => equipment.id === updatedEquipment.id
-    );
-    equipment.name = updatedEquipment.name;
-    equipment.price = updatedEquipment.price;
-    equipment.description = updatedEquipment.description;
-    equipment.image = updatedEquipment.image;
+  updateEquipment = async (updatedEquipment) => {
+    try {
+      await axios.put(
+        `http://localhost:8000/equipment/${updatedEquipment.id}`,
+        updatedEquipment
+      );
+      const equipment = this.equipment.find(
+        (equipment) => equipment.id === updatedEquipment.id
+      );
+      for (const key in updatedEquipment)
+        equipment[key] = updatedEquipment[key];
+    } catch (error) {}
   };
 }
 

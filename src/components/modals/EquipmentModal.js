@@ -11,9 +11,7 @@ import { customStyles, CreateButtonStyled } from "../../styles";
 const EquipmentModal = ({ isOpen, closeModal, oldEquipment }) => {
   const [equipment, setEquipment] = useState(
     oldEquipment ?? {
-      id: 0,
       name: "",
-      slug: "",
       price: 0,
       description: "",
       image: "",
