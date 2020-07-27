@@ -15,10 +15,9 @@ class EquipmentStore {
 
   createEquipment = async (newEquipment) => {
     try {
-      const res = await axios.post(
-        "http://localhost:8000/equipment",
-        newEquipment
-      );
+      const formData = new FormData();
+      for (const key in newEquipment) formData.append(key, newEquipment[key]);
+      const res = await axios.post("http://localhost:8000/equipment", formData);
       this.equipment.push(res.data);
     } catch (error) {}
   };

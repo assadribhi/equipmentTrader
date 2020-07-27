@@ -22,6 +22,9 @@ const EquipmentModal = ({ isOpen, closeModal, oldEquipment }) => {
     setEquipment({ ...equipment, [event.target.name]: event.target.value });
   };
 
+  const handleImage = (event) =>
+    setEquipment({ ...equipment, image: event.target.files[0] });
+
   const handleSubmit = (event) => {
     event.preventDefault();
     equipmentStore[oldEquipment ? "updateEquipment" : "createEquipment"](
@@ -79,11 +82,9 @@ const EquipmentModal = ({ isOpen, closeModal, oldEquipment }) => {
           <label>Image</label>
           <input
             className="form-control"
-            type="text"
-            required="required"
+            type="file"
             name="image"
-            onChange={handleChange}
-            value={equipment.image}
+            onChange={handleImage}
           />
         </div>
         <CreateButtonStyled className="btn float-right">
