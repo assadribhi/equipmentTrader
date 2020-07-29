@@ -15,6 +15,11 @@ const NavBar = (props) => {
       <div className="collapse navbar-collapse">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
+            <NavLinkStyled to="/yards" className="nav-link">
+              Yards
+            </NavLinkStyled>
+          </li>
+          <li className="nav-item">
             <NavLinkStyled to="/equipment" className="nav-link">
               Equipment
             </NavLinkStyled>

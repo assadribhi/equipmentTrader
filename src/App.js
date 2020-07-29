@@ -1,18 +1,18 @@
 // React
 import React, { useState } from "react";
-import { Route, Switch } from "react-router";
 
-// Components
-import EquipmentList from "./components/EquipmentList";
-import EquipmentDetails from "./components/EquipmentDetails";
-import Home from "./components/Home";
 import NavBar from "./components/NavBar";
+
+import Routes from "./components/Routes";
+import yardStore from "./stores/yardStore";
+import equipmentStore from "./stores/equipmentStore";
 
 // Styles
 import { GlobalStyle } from "./styles";
 
 // Theme
 import { ThemeProvider } from "styled-components";
+import { observer } from "mobx-react";
 
 const theme = {
   lightTheme: {
@@ -55,20 +55,13 @@ function App() {
       <GlobalStyle />
 
       <NavBar toggleTheme={toggleTheme} currentTheme={currentTheme} />
-
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/equipment/:equipmentSlug">
-          <EquipmentDetails />
-        </Route>
-        <Route path="/equipment">
-          <EquipmentList />
-        </Route>
-      </Switch>
+      {yardStore.loading || equipmentStore.loading ? (
+        <h1>Loading</h1>
+      ) : (
+        <Routes />
+      )}
     </ThemeProvider>
   );
 }
 
-export default App;
+export default observer(App);

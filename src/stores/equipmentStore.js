@@ -5,19 +5,24 @@ import { decorate, observable } from "mobx";
 
 class EquipmentStore {
   equipment = [];
+  loading = true;
 
   fetchEquipment = async () => {
     try {
       const res = await axios.get("http://localhost:8000/equipment");
       this.equipment = res.data;
+      this.loading = false;
     } catch (error) {}
   };
 
-  createEquipment = async (newEquipment) => {
+  createEquipment = async (newEquipment, yardId) => {
     try {
       const formData = new FormData();
       for (const key in newEquipment) formData.append(key, newEquipment[key]);
-      const res = await axios.post("http://localhost:8000/equipment", formData);
+      const res = await axios.post(
+        `http://localhost:8000/yards/${newEquipment.yardId}/equipment`,
+        formData
+      );
       this.equipment.push(res.data);
     } catch (error) {}
   };
@@ -48,6 +53,7 @@ class EquipmentStore {
 
 decorate(EquipmentStore, {
   equipment: observable,
+  loading: observable,
 });
 
 const equipmentStore = new EquipmentStore();

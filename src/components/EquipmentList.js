@@ -3,7 +3,6 @@ import React, { useState } from "react";
 // Components
 import EquipmentItem from "./EquipmentItem";
 import SearchBar from "./SearchBar";
-import AddButton from "./buttons/AddButton";
 
 // MobX
 import { observer } from "mobx-react";
@@ -11,28 +10,20 @@ import { observer } from "mobx-react";
 // Styles
 import { ListWrapper } from "../styles";
 
-// Stores
-import equipmentStore from "../stores/equipmentStore";
-
-const EquipmentList = ({ selectEquipment }) => {
+const EquipmentList = ({ equipment }) => {
   const [query, setQuery] = useState("");
 
-  const itemList = equipmentStore.equipment
+  const itemList = equipment
     .filter((equipment) =>
       equipment.name.toLowerCase().includes(query.toLowerCase())
     )
     .map((equipment) => (
-      <EquipmentItem
-        equipment={equipment}
-        key={equipment.id}
-        selectEquipment={selectEquipment}
-      />
+      <EquipmentItem equipment={equipment} key={equipment.id} />
     ));
   return (
     <div className="container">
       <SearchBar setQuery={setQuery} />
       <ListWrapper className="row">{itemList}</ListWrapper>
-      <AddButton />
     </div>
   );
 };

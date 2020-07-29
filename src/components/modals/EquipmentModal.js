@@ -8,9 +8,10 @@ import equipmentStore from "../../stores/equipmentStore";
 // Style
 import { customStyles, CreateButtonStyled } from "../../styles";
 
-const EquipmentModal = ({ isOpen, closeModal, oldEquipment }) => {
+const EquipmentModal = ({ isOpen, closeModal, oldEquipment, yardId }) => {
   const [equipment, setEquipment] = useState(
     oldEquipment ?? {
+      yardId: yardId,
       name: "",
       price: 0,
       description: "",

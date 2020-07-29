@@ -47,19 +47,26 @@ export const DetailWrapper = styled.div`
 
   p {
     vertical-align: middle;
-    
-      &.equipmentName {
-        color: ${(props) => props.theme.fontColor};
-      }
-      &.equipmentPrice {
-        color: ${(props) => props.theme.priceFontColor};
-        font-weight: bold;
-      
+
+    &.equipmentName {
+      color: ${(props) => props.theme.fontColor};
+    }
+    &.equipmentPrice {
+      color: ${(props) => props.theme.priceFontColor};
+      font-weight: bold;
+    }
+    &.yardName {
+      color: ${(props) => props.theme.fontColor};
+    }
+    &.yardPrice {
+      color: ${(props) => props.theme.priceFontColor};
+      font-weight: bold;
+    }
   }
 `;
 
 export const EquipmentWrapper = styled.div`
-  margin: 20px;
+  margin: 50px;
   padding: 10px;
 
   img {
@@ -146,4 +153,26 @@ export const YardImage = styled.img`
   margin-left: auto;
   margin-right: auto;
   width: 40%;
+`;
+
+export const YardWrapper = styled.div`
+  margin: 20px;
+  padding: 10px;
+
+  img {
+    margin: 10px;
+    width: 300px;
+  }
+
+  text-align: center;
+
+  p {
+    &.equipmentName {
+      color: ${(props) => props.theme.fontColor};
+    }
+    &.equipmentPrice {
+      color: ${(props) => props.theme.priceFontColor};
+      font-weight: bold;
+    }
+  }
 `;

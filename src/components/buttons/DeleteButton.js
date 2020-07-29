@@ -2,13 +2,16 @@ import React from "react";
 
 // Stores
 import equipmentStore from "../../stores/equipmentStore";
+import yardStore from "../../stores/yardStore";
 
 // Styles
 import { DeleteButtonStyled } from "../../styles";
 
-const DeleteButton = (props) => {
+const DeleteButton = ({ equipmentId, yardId }) => {
   const handleDelete = () => {
-    equipmentStore.deleteItem(props.equipmentId);
+    yardId
+      ? yardStore.deleteYard(yardId)
+      : equipmentStore.deleteItem(equipmentId);
   };
   return (
     <div>

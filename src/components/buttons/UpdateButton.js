@@ -1,5 +1,6 @@
 // Modals
 import EquipmentModal from "../modals/EquipmentModal";
+import YardModal from "../modals/YardModal";
 
 // React
 import React, { useState } from "react";
@@ -7,7 +8,7 @@ import React, { useState } from "react";
 // Styles
 import { UpdateButtonStyled } from "../../styles";
 
-const UpdateButton = ({ equipment }) => {
+const UpdateButton = ({ equipment, yard }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
@@ -16,11 +17,15 @@ const UpdateButton = ({ equipment }) => {
   return (
     <div>
       <UpdateButtonStyled onClick={openModal}>Update</UpdateButtonStyled>
-      <EquipmentModal
-        isOpen={isOpen}
-        closeModal={closeModal}
-        oldEquipment={equipment}
-      />
+      {yard ? (
+        <YardModal isOpen={isOpen} closeModal={closeModal} oldYard={yard} />
+      ) : (
+        <EquipmentModal
+          isOpen={isOpen}
+          closeModal={closeModal}
+          oldEquipment={equipment}
+        />
+      )}
     </div>
   );
 };
