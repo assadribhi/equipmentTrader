@@ -1,5 +1,5 @@
 // Components
-import DeleteButton from "./buttons/DeleteButton";
+import DeleteButton from "../buttons/DeleteButton";
 import { observer } from "mobx-react";
 
 // React
@@ -7,8 +7,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Styles
-import { YardWrapper } from "../styles";
-import UpdateButton from "./buttons/UpdateButton";
+import { YardWrapper } from "../../styles";
+import UpdateButton from "../buttons/UpdateButton";
 
 const YardItem = ({ yard }) => {
   return (

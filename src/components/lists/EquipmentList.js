@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 // Components
-import EquipmentItem from "./EquipmentItem";
-import SearchBar from "./SearchBar";
+import EquipmentItem from "../items/EquipmentItem";
+import SearchBar from "../SearchBar";
 
 // MobX
 import { observer } from "mobx-react";
 
 // Styles
-import { ListWrapper } from "../styles";
+import { ListWrapper } from "../../styles";
 
 const EquipmentList = ({ equipment }) => {
   const [query, setQuery] = useState("");

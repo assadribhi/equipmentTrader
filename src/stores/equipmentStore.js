@@ -15,15 +15,21 @@ class EquipmentStore {
     } catch (error) {}
   };
 
-  createEquipment = async (newEquipment, yardId) => {
+  getEquipmentById = (equipmentId) => {
+    return this.equipment.find((equipment) => equipment.id === equipmentId);
+  };
+
+  createEquipment = async (newEquipment, yard) => {
     try {
       const formData = new FormData();
       for (const key in newEquipment) formData.append(key, newEquipment[key]);
       const res = await axios.post(
-        `http://localhost:8000/yards/${newEquipment.yardId}/equipment`,
+        `http://localhost:8000/yards/${yard.id}/equipment`,
         formData
       );
-      this.equipment.push(res.data);
+      const equipment = res.data;
+      this.equipment.push(equipment);
+      yard.equipment.push({ id: equipment.id });
     } catch (error) {}
   };
 
@@ -47,6 +53,7 @@ class EquipmentStore {
       );
       for (const key in updatedEquipment)
         equipment[key] = updatedEquipment[key];
+      equipment.image = URL.createObjectURL(updatedEquipment.image);
     } catch (error) {}
   };
 }

@@ -1,5 +1,5 @@
 // Components
-import DeleteButton from "./buttons/DeleteButton";
+import DeleteButton from "../buttons/DeleteButton";
 import { Redirect, useParams } from "react-router-dom";
 
 // Mobx
@@ -9,11 +9,11 @@ import { observer } from "mobx-react";
 import React from "react";
 
 // Stores
-import equipmentStore from "../stores/equipmentStore";
+import equipmentStore from "../../stores/equipmentStore";
 
 // Styles
-import { DetailWrapper } from "../styles";
-import UpdateButton from "./buttons/UpdateButton";
+import { DetailWrapper } from "../../styles";
+import UpdateButton from "../buttons/UpdateButton";
 
 const EquipmentDetail = (props) => {
   const { equipmentSlug } = useParams();

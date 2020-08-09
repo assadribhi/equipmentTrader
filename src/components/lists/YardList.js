@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 
 // Components
-import YardItem from "./YardItem";
-import SearchBar from "./SearchBar";
-import AddButton from "./buttons/AddButton";
+import YardItem from "../items/YardItem";
+import SearchBar from "../SearchBar";
+import AddButton from "../buttons/AddButton";
 
 // MobX
 import { observer } from "mobx-react";
 
 // Styles
-import { ListWrapper } from "../styles";
+import { ListWrapper } from "../../styles";
 
 // Stores
-import yardStore from "../stores/yardStore";
+import yardStore from "../../stores/yardStore";
 
 const YardList = ({ selectYard }) => {
   const [query, setQuery] = useState("");

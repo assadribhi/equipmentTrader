@@ -3,34 +3,27 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 
 // Stores
-import equipmentStore from "../../stores/equipmentStore";
+import authStore from "../../stores/authStore";
 
 // Style
 import { customStyles, CreateButtonStyled } from "../../styles";
 
-const EquipmentModal = ({ isOpen, closeModal, oldEquipment, yard }) => {
-  const [equipment, setEquipment] = useState(
-    oldEquipment ?? {
-      name: "",
-      price: 0,
-      description: "",
-      image: "",
-    }
-  );
+const SignupModal = ({ isOpen, closeModal }) => {
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    userName: "",
+    password: "",
+    email: "",
+  });
 
   const handleChange = (event) => {
-    setEquipment({ ...equipment, [event.target.name]: event.target.value });
+    setUser({ ...user, [event.target.name]: event.target.value });
   };
-
-  const handleImage = (event) =>
-    setEquipment({ ...equipment, image: event.target.files[0] });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    equipmentStore[oldEquipment ? "updateEquipment" : "createEquipment"](
-      equipment,
-      yard
-    );
+    authStore.signup(user);
     closeModal(true);
   };
 
@@ -41,59 +34,78 @@ const EquipmentModal = ({ isOpen, closeModal, oldEquipment, yard }) => {
       style={customStyles}
       contentLabel="Example Modal"
     >
-      <h3>{oldEquipment ? "Edit Equipment" : "New Equipment"}</h3>
+      <h3>Sign Up Form</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group row">
           <div className="col-6">
-            <label>Name</label>
+            <label>First Name</label>
             <input
               className="form-control"
               type="text"
               required="required"
-              name="name"
+              name="firstName"
               onChange={handleChange}
-              value={equipment.name}
-            />
-          </div>
-          <div className="col-6">
-            <label>Price</label>
-            <input
-              className="form-control"
-              type="number"
-              min="25"
-              required="required"
-              name="price"
-              onChange={handleChange}
-              value={equipment.price}
+              value={user.firstName}
             />
           </div>
         </div>
+
+        <div className="form-group row">
+          <div className="col-6">
+            <label>Last Name</label>
+            <input
+              className="form-control"
+              type="text"
+              required="required"
+              name="lastName"
+              onChange={handleChange}
+              value={user.lastName}
+            />
+          </div>{" "}
+        </div>
+
         <div className="form-group">
-          <label>Description</label>
+          <label>User Name</label>
           <input
             className="form-control"
             type="text"
             required="required"
-            name="description"
+            name="username"
             onChange={handleChange}
-            value={equipment.description}
+            value={user.username}
           />
         </div>
-        <div className="form-group">
-          <label>Image</label>
+
+        <div className="col-6">
+          <label>Password</label>
           <input
             className="form-control"
-            type="file"
-            name="image"
-            onChange={handleImage}
+            type="text"
+            required="required"
+            name="password"
+            onChange={handleChange}
+            value={user.password}
           />
         </div>
+
+        <div className="col-6">
+          <label>E-Mail</label>
+          <input
+            className="form-control"
+            type="text"
+            required="required"
+            name="email"
+            onChange={handleChange}
+            value={user.email}
+          />
+        </div>
+
         <CreateButtonStyled className="btn float-right">
-          {oldEquipment ? "Update" : "Add"}
+          Sign Up
         </CreateButtonStyled>
       </form>
     </Modal>
   );
 };
 
-export default EquipmentModal;
+export default SignupModal;

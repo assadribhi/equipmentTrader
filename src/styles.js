@@ -1,6 +1,16 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 
+export const AuthButtonStyled = styled.button`
+  font-size: 1em;
+  padding: 0.25em 1em;
+  margin-right: 0.5em;
+  font-weight: bold;
+  border-radius: 3px;
+  color: ${(props) => props.theme.fontColor};
+  background-color: ${(props) => props.theme.backgroundColor};
+`;
+
 export const CreateButtonStyled = styled.button`
   color: ${(props) => props.theme.backgroundColor};
   background-color: ${(props) => props.theme.mainColor};

@@ -1,7 +1,7 @@
 // Components
-import DeleteButton from "./buttons/DeleteButton";
+import DeleteButton from "../buttons/DeleteButton";
 import { Redirect, useParams } from "react-router-dom";
-import EquipmentList from "./EquipmentList";
+import EquipmentList from "../lists/EquipmentList";
 
 // Mobx
 import { observer } from "mobx-react";
@@ -10,18 +10,27 @@ import { observer } from "mobx-react";
 import React from "react";
 
 // Stores
-import yardStore from "../stores/yardStore";
+import yardStore from "../../stores/yardStore";
 
 // Styles
-import { DetailWrapper } from "../styles";
-import UpdateButton from "./buttons/UpdateButton";
-import AddButton from "./buttons/AddButton";
+import { DetailWrapper } from "../../styles";
+import UpdateButton from "../buttons/UpdateButton";
+import AddButton from "../buttons/AddButton";
+import equipmentStore from "../../stores/equipmentStore";
 
 const YardDetail = (props) => {
   const { yardSlug } = useParams();
 
   const yard = yardStore.yards.find((yard) => yard.slug === yardSlug);
   if (!yard) return <Redirect to="/yards" />;
+
+  let equipment = [];
+  if (yard.equipment) {
+    equipment = yard.equipment
+      .map((equipment) => equipmentStore.getEquipmentById(equipment.id))
+      .filter((equipment) => equipment);
+  }
+
   return (
     <div>
       <DetailWrapper>
@@ -33,9 +42,9 @@ const YardDetail = (props) => {
         <DeleteButton yardId={yard.id} />
       </DetailWrapper>
 
-      <EquipmentList equipment={yard.equipment} />
+      <EquipmentList equipment={equipment} />
 
-      <AddButton yardId={yard.id} />
+      <AddButton yard={yard} />
     </div>
   );
 };

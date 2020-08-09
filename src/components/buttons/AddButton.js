@@ -5,7 +5,7 @@ import { MdAddCircleOutline } from "react-icons/md";
 import EquipmentModal from "../modals/EquipmentModal";
 import YardModal from "../modals/YardModal";
 
-const AddButton = ({ yardId }) => {
+const AddButton = ({ yard }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
@@ -19,14 +19,10 @@ const AddButton = ({ yardId }) => {
         size="2em"
         onClick={openModal}
       />
-      {yardId ? (
-        <EquipmentModal
-          isOpen={isOpen}
-          closeModal={closeModal}
-          yardId={yardId}
-        />
+      {yard ? (
+        <EquipmentModal isOpen={isOpen} closeModal={closeModal} yard={yard} />
       ) : (
-        <YardModal isOpen={isOpen} closeModal={closeModal} yardId={yardId} />
+        <YardModal isOpen={isOpen} closeModal={closeModal} />
       )}
     </>
   );

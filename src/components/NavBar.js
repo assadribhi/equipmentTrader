@@ -4,6 +4,7 @@ import React from "react";
 // Styles
 import { NavStyled, NavLinkStyled, ThemeSwitcher, Logo } from "../styles";
 import logo from "../logo.png";
+import SignupButton from "./buttons/SignupButton";
 
 const NavBar = (props) => {
   return (
@@ -23,6 +24,9 @@ const NavBar = (props) => {
             <NavLinkStyled to="/equipment" className="nav-link">
               Equipment
             </NavLinkStyled>
+          </li>
+          <li className="nav-item">
+            <SignupButton />
           </li>
           <li className="nav-item">
             <ThemeSwitcher onClick={props.toggleTheme}>
