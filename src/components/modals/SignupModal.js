@@ -80,7 +80,7 @@ const SignupModal = ({ isOpen, closeModal }) => {
           <label>Password</label>
           <input
             className="form-control"
-            type="text"
+            type="password"
             required="required"
             name="password"
             onChange={handleChange}
