@@ -1,4 +1,4 @@
-import axios from "axios";
+import instance from "./instance";
 
 // Mobx
 import { decorate, observable } from "mobx";
@@ -9,7 +9,7 @@ class EquipmentStore {
 
   fetchEquipment = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/equipment");
+      const res = await instance.get("/equipment");
       this.equipment = res.data;
       this.loading = false;
     } catch (error) {}
@@ -23,10 +23,7 @@ class EquipmentStore {
     try {
       const formData = new FormData();
       for (const key in newEquipment) formData.append(key, newEquipment[key]);
-      const res = await axios.post(
-        `http://localhost:8000/yards/${yard.id}/equipment`,
-        formData
-      );
+      const res = await instance.post(`/yards/${yard.id}/equipment`, formData);
       const equipment = res.data;
       this.equipment.push(equipment);
       yard.equipment.push({ id: equipment.id });
@@ -35,7 +32,7 @@ class EquipmentStore {
 
   deleteItem = async (equipmentId) => {
     try {
-      await axios.delete(`http://localhost:8000/equipment/${equipmentId}`);
+      await instance.delete(`/equipment/${equipmentId}`);
       this.equipment = this.equipment.filter(
         (equipment) => equipment.id !== +equipmentId
       );
@@ -44,10 +41,7 @@ class EquipmentStore {
 
   updateEquipment = async (updatedEquipment) => {
     try {
-      await axios.put(
-        `http://localhost:8000/equipment/${updatedEquipment.id}`,
-        updatedEquipment
-      );
+      await instance.put(`/equipment/${updatedEquipment.id}`, updatedEquipment);
       const equipment = this.equipment.find(
         (equipment) => equipment.id === updatedEquipment.id
       );

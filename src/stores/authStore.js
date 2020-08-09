@@ -1,4 +1,4 @@
-import axios from "axios";
+import instance from "./instance";
 
 // Mobx
 import { decorate } from "mobx";
@@ -6,7 +6,7 @@ import { decorate } from "mobx";
 class AuthStore {
   signup = async (userData) => {
     try {
-      await axios.post("http://localhost:8000/signup", userData);
+      await instance.post("/signup", userData);
     } catch (error) {}
   };
 }
