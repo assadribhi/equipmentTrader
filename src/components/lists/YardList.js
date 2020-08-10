@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 // Components
 import YardItem from "../items/YardItem";
@@ -13,9 +14,11 @@ import { ListWrapper } from "../../styles";
 
 // Stores
 import yardStore from "../../stores/yardStore";
+import authStore from "../../stores/authStore";
 
 const YardList = ({ selectYard }) => {
   const [query, setQuery] = useState("");
+  if (!authStore.user) return <Redirect to="/" />;
 
   const yardList = yardStore.yards
     .filter((yard) => yard.name.toLowerCase().includes(query.toLowerCase()))

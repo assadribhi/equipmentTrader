@@ -158,6 +158,10 @@ export const UpdateButtonStyled = styled.button`
   border: 0px;
 `;
 
+export const UsernameStyled = styled.p`
+  padding: 0.25em 1em;
+`;
+
 export const YardImage = styled.img`
   display: block;
   margin-left: auto;
