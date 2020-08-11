@@ -1,14 +1,13 @@
 // React
 import React, { useState } from "react";
-import Modal from "react-modal";
 
 // Stores
 import authStore from "../../stores/authStore";
 
 // Style
-import { customStyles, CreateButtonStyled } from "../../styles";
+import { CreateButtonStyled } from "../../styles";
 
-const SignupModal = ({ isOpen, closeModal }) => {
+const Signup = () => {
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -24,16 +23,10 @@ const SignupModal = ({ isOpen, closeModal }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     authStore.signup(user);
-    closeModal(true);
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={closeModal}
-      style={customStyles}
-      contentLabel="Example Modal"
-    >
+    <div>
       <h3>Sign Up Form</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group row">
@@ -42,6 +35,7 @@ const SignupModal = ({ isOpen, closeModal }) => {
             <input
               className="form-control"
               type="text"
+              required="required"
               name="firstName"
               onChange={handleChange}
               value={user.firstName}
@@ -55,11 +49,12 @@ const SignupModal = ({ isOpen, closeModal }) => {
             <input
               className="form-control"
               type="text"
+              required="required"
               name="lastName"
               onChange={handleChange}
               value={user.lastName}
             />
-          </div>{" "}
+          </div>
         </div>
 
         <div className="form-group">
@@ -91,6 +86,7 @@ const SignupModal = ({ isOpen, closeModal }) => {
           <input
             className="form-control"
             type="text"
+            required="required"
             name="email"
             onChange={handleChange}
             value={user.email}
@@ -101,8 +97,8 @@ const SignupModal = ({ isOpen, closeModal }) => {
           Sign Up
         </CreateButtonStyled>
       </form>
-    </Modal>
+    </div>
   );
 };
 
-export default SignupModal;
+export default Signup;
