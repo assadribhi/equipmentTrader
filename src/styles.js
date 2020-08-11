@@ -112,7 +112,7 @@ export const ListWrapper = styled.div`
 `;
 
 export const Logo = styled(Link)`
-  padding: 0.75em;
+  padding: 1em;
   img {
     width: 8em;
   }
@@ -159,7 +159,20 @@ export const UpdateButtonStyled = styled.button`
 `;
 
 export const UsernameStyled = styled.p`
-  padding: 0.25em 1em;
+  color: ${(props) => props.theme.inActiveFontColor};
+
+  &.active {
+    padding: 0.25em 1em;
+
+    color: ${(props) => props.theme.activeFontColor};
+  }
+`;
+
+export const WebsiteImage = styled.img`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
 `;
 
 export const YardImage = styled.img`

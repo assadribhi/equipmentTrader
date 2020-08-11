@@ -14,6 +14,7 @@ import {
 import logo from "../logo.png";
 import SignupButton from "./buttons/SignupButton";
 import SignInButton from "./buttons/SignInButton";
+import { FiLogOut } from "react-icons/fi";
 
 const NavBar = (props) => {
   return (
@@ -39,7 +40,10 @@ const NavBar = (props) => {
             </>
           )}
           {authStore.user ? (
-            <UsernameStyled>Hello, {authStore.user.username}</UsernameStyled>
+            <>
+              <UsernameStyled>Hello, {authStore.user.username}</UsernameStyled>
+              <FiLogOut onClick={authStore.signOut} size="2em" color="red" />
+            </>
           ) : (
             <>
               <li className="nav-item">
