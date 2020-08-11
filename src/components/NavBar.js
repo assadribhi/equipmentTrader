@@ -42,7 +42,11 @@ const NavBar = (props) => {
           {authStore.user ? (
             <>
               <UsernameStyled>Hello, {authStore.user.username}</UsernameStyled>
-              <FiLogOut onClick={authStore.signOut} size="2em" color="red" />
+              <FiLogOut
+                onClick={authStore.signOut}
+                size="2em"
+                color={props.currentTheme === "lightTheme" ? "white" : "black"}
+              />
             </>
           ) : (
             <>
