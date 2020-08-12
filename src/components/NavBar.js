@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useState } from "react";
 import authStore from "../stores/authStore";
 import { observer } from "mobx-react";
 
@@ -16,7 +16,14 @@ import SignupButton from "./buttons/SignupButton";
 import SignInButton from "./buttons/SignInButton";
 import { FiLogOut } from "react-icons/fi";
 
+import YardModal from "../components/modals/YardModal";
+
 const NavBar = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeModal = () => setIsOpen(false);
+  const openModal = () => setIsOpen(true);
+
   return (
     <NavStyled className="navbar navbar-expand-lg ">
       <Logo className="navbar-brand" to="/">
@@ -58,6 +65,12 @@ const NavBar = (props) => {
               </li>
             </>
           )}
+          <li className="nav-item">
+            {authStore.user && !authStore.user.yardSlug && (
+              <UsernameStyled onClick={openModal}> Create Yard</UsernameStyled>
+            )}
+            <YardModal isOpen={isOpen} closeModal={closeModal} />;
+          </li>
           <li className="nav-item">
             <ThemeSwitcher onClick={props.toggleTheme}>
               {props.currentTheme === "lightTheme" ? "Dark" : "Light"} Mode

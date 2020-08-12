@@ -1,9 +1,15 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
+
+import authStore from "../stores/authStore";
 
 // Styles
 import { Description, Title, YardImage } from "../styles";
 
 const Home = () => {
+  if (authStore.user && authStore.user.yardSlug) {
+    return <Redirect to={`/yards/${authStore.user.yardSlug}`} />;
+  }
   return (
     <>
       <Title>Heavy Equipment Trader</Title>
