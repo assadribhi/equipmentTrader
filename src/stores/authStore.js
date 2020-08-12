@@ -9,6 +9,7 @@ import decode from "jwt-decode";
 class AuthStore {
   user = null;
   setUser = (token) => {
+    localStorage.setItem("MyToken", token); //TODO: Local Storage is not working
     instance.defaults.headers.common.Authorization = `Bearer ${token}`;
     this.user = decode(token);
   };
@@ -22,6 +23,7 @@ class AuthStore {
 
   signOut = () => {
     delete instance.defaults.headers.common.Authorization;
+    localStorage.removeItem("myToken");
     this.user = null;
   };
 
@@ -31,6 +33,18 @@ class AuthStore {
       this.setUser(res.data.token);
     } catch (error) {}
   };
+  checkForToken = () => {
+    const token = localStorage.getItem("myToken");
+    if (token) {
+      const currentTime = Date.now();
+      const user = decode(token);
+      if (user.exp >= currentTime) {
+        this.setUser(token);
+      } else {
+        this.signOut();
+      }
+    }
+  };
 }
 
 decorate(AuthStore, {
@@ -38,5 +52,6 @@ decorate(AuthStore, {
 });
 
 const authStore = new AuthStore();
+authStore.checkForToken();
 
 export default authStore;
