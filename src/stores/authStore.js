@@ -9,7 +9,7 @@ import decode from "jwt-decode";
 class AuthStore {
   user = null;
   setUser = (token) => {
-    localStorage.setItem("MyToken", token); //TODO: Local Storage is not working
+    localStorage.setItem("myToken", token); //TODO: Local Storage is not working
     instance.defaults.headers.common.Authorization = `Bearer ${token}`;
     this.user = decode(token);
   };
